@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Idade</title>
+    <style>
+        body {
+            font-family: Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000000;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: #7561a1;
+            color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            max-width: 90%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #fff;
+            font-size: 2em;
+            margin: 0 0 10px;
+        }
+        p {
+            color: #000000;
+            font-size: 1.0em;
+            margin: 0 0 20px;
+        }
+        input[type="date"] {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #111010;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        button {
+            font-family: Tahoma, Geneva, Verdana, sans-serif;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background-color: #290074;
+            color: #fff;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4f4564;
+            color: #fff;
+        }
+        .result {
+            font-size: 1.2em;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+        .dataNascimento{
+            background-color: #7561a1;
+        }
+        
+
+        /* Ajustes de responsividade */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.5em;
+            }
+            p, input[type="date"], button {
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.2em;
+            }
+            p, input[type="date"], button {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Verificar Idade</h1>
+        <p>Insira sua data de nascimento:</p>
+        <input type="date" id="dataNascimento" class="dataNascimento">
+        <button onclick="verificarIdade()">Verificar</button>
+        <div class="result" id="resultado"></div>
+    </div>
+
+    <script>
+        function verificarIdade() {
+            const dataNascimento = new Date(document.getElementById("dataNascimento").value);
+            const hoje = new Date();
+            const idade = hoje.getFullYear() - dataNascimento.getFullYear();
+            const mes = hoje.getMonth() - dataNascimento.getMonth();
+            if (mes < 0 || (mes === 0 && hoje.getDate() < dataNascimento.getDate())) {
+                idade--;
+            }
+            
+            const resultado = document.getElementById("resultado");
+            if (idade >= 18) {
+                resultado.innerHTML = "<strong>Você é maior de idade.</strong>";
+            } else {
+                resultado.innerHTML = "<strong>Você é menor de idade.</strong>";
+            }
+        }
+    </script>
+</body>
+</html>
